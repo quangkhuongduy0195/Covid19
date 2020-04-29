@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    x:Class="Covid19.Views.MenuPage">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            DurationIn="500"
+            DurationOut="500"
+            EasingIn="CubicInOut"
+            EasingOut="CubicIn"
+            HasBackgroundAnimation="True"
+            PositionIn="Top"
+            PositionOut="Top"
+            ScaleIn="1.5"
+            ScaleOut="0.5" />
+    </pages:PopupPage.Animation>
+    <ContentPage.Content>
+        <pancake:PancakeView
+            HeightRequest="100"
+            BackgroundGradientAngle="90"
+            BackgroundGradientEndColor="#211F4E"
+            BackgroundGradientStartColor="#7C45B3"
+            CornerRadius="0, 0, 20, 20"
+            HasShadow="True"
+            VerticalOptions="Start">
+            <Grid
+                RowSpacing="12"
+                ColumnSpacing="12"
+                Margin="18, 0"
+                VerticalOptions="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition
+                        Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="0.5*" />
+                    <ColumnDefinition
+                        Width="0.4*" />
+                    <ColumnDefinition
+                        Width="0.1*" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Text="Select your language"
+                    Style="{DynamicResource lbSubTitleHeader}" />
+                <Grid
+                    Grid.Row="0"
+                    Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition
+                            Width="36" />
+                        <ColumnDefinition
+                            Width="36" />
+                        <ColumnDefinition
+                            Width="36" />
+                    </Grid.ColumnDefinitions>
+                    <ImageButton
+                        Scale="0.7"
+                        Grid.Column="0"
+                        Source="flag_us"
+                        HeightRequest="22"
+                        Aspect="AspectFill"
+                        Command="{Binding EnLanguageCommand}">
+                        <ImageButton.Triggers>
+                            <DataTrigger
+                                TargetType="ImageButton"
+                                Binding="{Binding AppLanguageEN}"
+                                Value="True">
+                                <Setter
+                                    Property="Scale"
+                                    Value="1" />
+                            </DataTrigger>
+                        </ImageButton.Triggers>
+                    </ImageButton>
+                    <ImageButton
+                        Scale="0.7"
+                        Grid.Column="1"
+                        Source="flag_vn"
+                        HeightRequest="22"
+                        Aspect="AspectFill"
+                        Command="{Binding VnLanguageCommand}">
+                        <ImageButton.Triggers>
+                            <DataTrigger
+                                TargetType="ImageButton"
+                                Binding="{Binding AppLanguageVI}"
+                                Value="True">
+                                <Setter
+                                    Property="Scale"
+                                    Value="1" />
+                            </DataTrigger>
+                        </ImageButton.Triggers>
+                    </ImageButton>
+                    <ImageButton
+                        Scale="0.7"
+                        Grid.Column="2"
+                        Source="flag_br"
+                        HeightRequest="22"
+                        Aspect="AspectFill"
+                        Command="{Binding BrLanguageCommand}">
+                        <ImageButton.Triggers>
+                            <DataTrigger
+                                TargetType="ImageButton"
+                                Binding="{Binding AppLanguagePT}"
+                                Value="True">
+                                <Setter
+                                    Property="Scale"
+                                    Value="1" />
+                            </DataTrigger>
+                        </ImageButton.Triggers>
+                    </ImageButton>
+                </Grid>
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Text="Dark theme"
+                    Style="{DynamicResource lbSubTitleHeader}" />
+                <Switch
+                    IsToggled="{Binding AppDarkTheme}"
+                    Scale="{OnPlatform Android='1', iOS='0.6'}"
+                    Margin="{OnPlatform Android='-5,0,13,0', iOS='-11,-5,0,0'}"
+                    OnColor="#EEE"
+                    ThumbColor="#F4195D"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    HeightRequest="28"
+                    HorizontalOptions="Start" />
+            </Grid>
+        </pancake:PancakeView>
+    </ContentPage.Content>
+</pages:PopupPage>

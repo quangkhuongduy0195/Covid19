@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pageBase:PageBase
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="{Binding Title}"
+    xmlns:pageBase="clr-namespace:Covid19.Views.Base"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:sk="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
+    BackgroundColor="{DynamicResource MainPageBackgroundColor}"
+    x:Class="Covid19.Views.HomePage">
+    <ContentPage.Content>
+        <ScrollView
+            VerticalScrollBarVisibility="Never">
+            <Grid
+                RowSpacing="30">
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition
+                        Height="Auto" />
+                </Grid.RowDefinitions>
+                <AbsoluteLayout
+                    HeightRequest="200">
+                    <Image
+                        AbsoluteLayout.LayoutFlags="All"
+                        AbsoluteLayout.LayoutBounds="0,0,1,1"
+                        Aspect="Fill"
+                        Grid.Row="0"
+                        Source="virus_background" />
+                    <Label
+                        AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional"
+                        AbsoluteLayout.LayoutBounds="1, 0.6, 0.95, 40"
+                        Text="{Binding TitleMainHeader}"
+                        Style="{OnPlatform Android={StaticResource lbHeaderAndroid}, iOS={StaticResource lbHeaderiOS}}" />
+                    <Label
+                        AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional"
+                        AbsoluteLayout.LayoutBounds="1, 0.75, 0.95, 16"
+                        Text="Last update: April 18, 2020 | 11:33:24"
+                        Style="{OnPlatform Android={StaticResource lbSubTitleHeader}, iOS={StaticResource lbSubTitleHeader}}" />
+                    <Image
+                        Source="menu"
+                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                        AbsoluteLayout.LayoutBounds="0.92, 0.34,36,36"
+                        Aspect="Fill">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding MenuCommand}" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </AbsoluteLayout>
+                <Grid
+                    ColumnSpacing="12"
+                    RowSpacing="16"
+                    Grid.Row="1"
+                    Margin="18, 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition
+                            Height="24" />
+                        <RowDefinition
+                            Height="90" />
+                        <RowDefinition
+                            Height="24" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition
+                            Width="*" />
+                        <ColumnDefinition
+                            Width="*" />
+                        <ColumnDefinition
+                            Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        VerticalTextAlignment="End"
+                        Text="{Binding TitleGlobal}"
+                        Style="{DynamicResource lbLastUpdateGlobal}" />
+                    <Label
+                        VerticalTextAlignment="End"
+                        HorizontalTextAlignment="End"
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Text="{Binding RefreshHeader}"
+                        Style="{StaticResource lbRefresh}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding GlobalRefreshCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <pancake:PancakeView
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Style="{DynamicResource FrameTotal}">
+                        <StackLayout
+                            Padding="8, 0"
+                            VerticalOptions="CenterAndExpand">
+                            <Label
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding TitleConfirmed}"
+                                Style="{DynamicResource fontGilroyMedium12}" />
+                            <Label
+                                sk:Skeleton.BackgroundColor="{DynamicResource SkeletonLabelBackground}"
+                                sk:Skeleton.IsParent="False"
+                                sk:Skeleton.IsBusy="{Binding BusyGlobal}"
+                                sk:Skeleton.Animation="{sk:DefaultAnimation Source=Fade, Interval='100',Parameter='1.1'}"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding GlobalConfirmed}"
+                                Style="{StaticResource lbTotalCasosConfirmados}" />
+                        </StackLayout>
+                    </pancake:PancakeView>
+                    <pancake:PancakeView
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Style="{DynamicResource FrameTotal}">
+                        <StackLayout
+                            Padding="8, 0"
+                            VerticalOptions="CenterAndExpand">
+                            <Label
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding TitleRecovered}"
+                                Style="{DynamicResource fontGilroyMedium12}" />
+                            <Label
+                                sk:Skeleton.BackgroundColor="{DynamicResource SkeletonLabelBackground}"
+                                sk:Skeleton.IsParent="False"
+                                sk:Skeleton.IsBusy="{Binding BusyGlobal}"
+                                sk:Skeleton.Animation="{sk:DefaultAnimation Source=Fade, Interval='100',Parameter='1.1'}"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding GlobalRecovered}"
+                                Style="{StaticResource lbTotalCasosRecuperados}" />
+                        </StackLayout>
+                    </pancake:PancakeView>
+                    <pancake:PancakeView
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Style="{DynamicResource FrameTotal}">
+                        <StackLayout
+                            Padding="8, 0"
+                            VerticalOptions="CenterAndExpand">
+                            <Label
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding TitleDeaths}"
+                                Style="{DynamicResource fontGilroyMedium12}" />
+                            <Label
+                                sk:Skeleton.BackgroundColor="{DynamicResource SkeletonLabelBackground}"
+                                sk:Skeleton.IsParent="False"
+                                sk:Skeleton.IsBusy="{Binding BusyGlobal}"
+                                sk:Skeleton.Animation="{sk:DefaultAnimation Source=Fade, Interval='100',Parameter='1.1'}"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding GlobalDeaths}"
+                                Style="{StaticResource lbTotalMortes}" />
+                        </StackLayout>
+                    </pancake:PancakeView>
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        Text="Last update: April 18, 2020 | 11:33:24"
+                        Style="{DynamicResource lbLastUpdateCountry}" />
+                </Grid>
+                <Grid
+                    ColumnSpacing="12"
+                    RowSpacing="16"
+                    Grid.Row="2"
+                    Margin="18, 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition
+                            Height="24" />
+                        <RowDefinition
+                            Height="90" />
+                        <RowDefinition
+                            Height="24" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition
+                            Width="*" />
+                        <ColumnDefinition
+                            Width="*" />
+                        <ColumnDefinition
+                            Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <StackLayout
+                        sk:Skeleton.BackgroundColor="{DynamicResource SkeletonStackBackground}"
+                        sk:Skeleton.IsParent="False"
+                        sk:Skeleton.IsBusy="{Binding BusyCoutry}"
+                        sk:Skeleton.Animation="{sk:DefaultAnimation Source=Fade, Interval='100',Parameter='1.1'}"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Orientation="Horizontal"
+                        VerticalOptions="End"
+                        Grid.ColumnSpan="2">
+                        <Frame
+                            IsClippedToBounds="True"
+                            Padding="0"
+                            CornerRadius="4"
+                            HasShadow="False"
+                            HorizontalOptions="Start"
+                            Visual="Material">
+                            <Image
+                                HeightRequest="24"
+                                WidthRequest="36"
+                                Aspect="AspectFill"
+                                Source="https://corona.lmao.ninja/assets/img/flags/vn.png" />
+                        </Frame>
+                        <Label
+                            VerticalTextAlignment="End"
+                            HorizontalOptions="FillAndExpand"
+                            Text="{Binding TitleCountry}"
+                            Style="{DynamicResource lbLastUpdateGlobal}" />
+                        <Image
+                            HeightRequest="22"
+                            WidthRequest="22"
+                            Style="{DynamicResource ImageDown}" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding SelectCountryCommand}" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Label
+                        VerticalTextAlignment="End"
+                        HorizontalTextAlignment="End"
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Text="{Binding RefreshHeader}"
+                        Style="{StaticResource lbRefresh}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding CountryRefreshCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <pancake:PancakeView
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Style="{DynamicResource FrameTotal}">
+                        <StackLayout
+                            Padding="8, 0"
+                            VerticalOptions="CenterAndExpand">
+                            <Label
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding TitleConfirmed}"
+                                Style="{DynamicResource fontGilroyMedium12}" />
+                            <Label
+                                sk:Skeleton.BackgroundColor="{DynamicResource SkeletonLabelBackground}"
+                                sk:Skeleton.IsParent="False"
+                                sk:Skeleton.IsBusy="{Binding BusyCoutry}"
+                                sk:Skeleton.Animation="{sk:DefaultAnimation Source=Fade, Interval='100',Parameter='1.1'}"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding CountryConfirmed}"
+                                Style="{StaticResource lbTotalCasosConfirmados}" />
+                        </StackLayout>
+                    </pancake:PancakeView>
+                    <pancake:PancakeView
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Style="{DynamicResource FrameTotal}">
+                        <StackLayout
+                            Padding="8, 0"
+                            VerticalOptions="CenterAndExpand">
+                            <Label
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding TitleRecovered}"
+                                Style="{DynamicResource fontGilroyMedium12}" />
+                            <Label
+                                sk:Skeleton.BackgroundColor="{DynamicResource SkeletonLabelBackground}"
+                                sk:Skeleton.IsParent="False"
+                                sk:Skeleton.IsBusy="{Binding BusyCoutry}"
+                                sk:Skeleton.Animation="{sk:DefaultAnimation Source=Fade, Interval='100',Parameter='1.1'}"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding CountryRecovered}"
+                                Style="{StaticResource lbTotalCasosRecuperados}" />
+                        </StackLayout>
+                    </pancake:PancakeView>
+                    <pancake:PancakeView
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Style="{DynamicResource FrameTotal}">
+                        <StackLayout
+                            Padding="8, 0"
+                            VerticalOptions="CenterAndExpand">
+                            <Label
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding TitleDeaths}"
+                                Style="{DynamicResource fontGilroyMedium12}" />
+                            <Label
+                                sk:Skeleton.BackgroundColor="{DynamicResource SkeletonLabelBackground}"
+                                sk:Skeleton.IsParent="False"
+                                sk:Skeleton.IsBusy="{Binding BusyCoutry}"
+                                sk:Skeleton.Animation="{sk:DefaultAnimation Source=Fade, Interval='100',Parameter='1.1'}"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding CountryDeaths}"
+                                Style="{StaticResource lbTotalMortes}" />
+                        </StackLayout>
+                    </pancake:PancakeView>
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        Text="Last update: April 18, 2020 | 11:33:24"
+                        Style="{DynamicResource lbLastUpdateCountry}" />
+                </Grid>
+                <pancake:PancakeView
+                    Grid.Row="3"
+                    Margin="18, 0"
+                    Style="{DynamicResource FrameTotal}">
+                    <Image
+                        Style="{DynamicResource ImageDoctor}" />
+                </pancake:PancakeView>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</pageBase:PageBase>

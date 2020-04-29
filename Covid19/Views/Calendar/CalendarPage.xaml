@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<page:PageBase
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:plugins="clr-namespace:Xamarin.Plugin.Calendar.Controls;assembly=Xamarin.Plugin.Calendar"
+    xmlns:controls="clr-namespace:Covid19.Controls.ExtendedElements.Calendar"
+    xmlns:page="clr-namespace:Covid19.Views.Base"
+    x:Name="calendarPage"
+    x:Class="Covid19.Views.Calendar.CalendarPage">
+    <ContentPage.Content>
+        <Grid>
+            <plugins:Calendar
+                SelectedDateTextFormat="dd-MM-yyyy"
+                Events="{Binding Events}"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                SelectedDate="{Binding SelectedDate}"
+                DayTappedCommand="{Binding DayTappedCommand}"
+                ShowYearPicker="False"
+                ShowMonthPicker="False">
+                <plugins:Calendar.EventTemplate>
+                    <DataTemplate>
+                        <controls:CalenderEvent
+                            CalenderEventCommand="{Binding BindingContext.EventSelectedCommand, Source={x:Reference calendarPage}}" />
+                    </DataTemplate>
+                </plugins:Calendar.EventTemplate>
+            </plugins:Calendar>
+        </Grid>
+    </ContentPage.Content>
+</page:PageBase>

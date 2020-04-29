@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<page:PageBase
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:converter="clr-namespace:Covid19.Converters"
+    xmlns:page="clr-namespace:Covid19.Views.Base"
+    Title="Covid-19"
+    IconImageSource="ic_virus"
+    x:Class="Covid19.Views.CoronaPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate
+                x:Key="template1">
+                <ViewCell>
+                    <Grid
+                        ColumnSpacing="2"
+                        HeightRequest="44"
+                        BackgroundColor="#80FFFFFF">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="*" />
+                            <ColumnDefinition
+                                Width="*" />
+                            <ColumnDefinition
+                                Width="*" />
+                            <ColumnDefinition
+                                Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            BackgroundColor="#80f1f5d7"
+                            Grid.Column="0"
+                            Text="{Binding Country}"
+                            TextColor="Black"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            FontAttributes="Bold"
+                            FontSize="Subtitle" />
+                        <Label
+                            BackgroundColor="#80f1f5d7"
+                            Grid.Column="1"
+                            Text="{Binding Confirmed}"
+                            TextColor="Black"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            FontAttributes="Bold"
+                            FontSize="Subtitle" />
+                        <Label
+                            BackgroundColor="#80f1f5d7"
+                            Grid.Column="2"
+                            Text="{Binding Deaths}"
+                            TextColor="Black"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            FontAttributes="Bold"
+                            FontSize="Subtitle" />
+                        <Label
+                            BackgroundColor="#80f1f5d7"
+                            Grid.Column="3"
+                            Text="{Binding Recovered}"
+                            TextColor="Black"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            FontAttributes="Bold"
+                            FontSize="Subtitle" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate
+                x:Key="template2">
+                <ViewCell>
+                    <Grid
+                        RowSpacing="1"
+                        ColumnSpacing="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition
+                                Height="44" />
+                            <RowDefinition
+                                Height="16" />
+                            <RowDefinition
+                                Height="32" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="*" />
+                            <ColumnDefinition
+                                Width="*" />
+                            <ColumnDefinition
+                                Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            Padding="16, 0"
+                            BackgroundColor="#f1f5d7"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            TextColor="Black"
+                            VerticalTextAlignment="Center"
+                            HorizontalTextAlignment="Start"
+                            FontAttributes="Bold"
+                            FontSize="Subtitle">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span
+                                        Text="{Binding Country}" />
+                                    <Span
+                                        Text="{Binding Province, Converter={StaticResource province}}" />
+                                    <Span
+                                        Text="{Binding Province}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label
+                            Padding="16, 0"
+                            BackgroundColor="#80f1f5d7"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Text="Confirmed"
+                            TextColor="Black"
+                            VerticalTextAlignment="Center"
+                            HorizontalTextAlignment="Start"
+                            FontAttributes="Bold"
+                            FontSize="Caption" />
+                        <Label
+                            Padding="16, 0"
+                            BackgroundColor="#80f1f5d7"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Text="Deaths"
+                            TextColor="Black"
+                            VerticalTextAlignment="Center"
+                            HorizontalTextAlignment="Start"
+                            FontAttributes="Bold"
+                            FontSize="Caption" />
+                        <Label
+                            Padding="16, 0"
+                            BackgroundColor="#80f1f5d7"
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            Text="Recovered"
+                            TextColor="Black"
+                            VerticalTextAlignment="Center"
+                            HorizontalTextAlignment="Start"
+                            FontAttributes="Bold"
+                            FontSize="Caption" />
+                        <Label
+                            BackgroundColor="#80f1f5d7"
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Text="{Binding Confirmed}"
+                            TextColor="Black"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            FontAttributes="Bold"
+                            FontSize="Subtitle" />
+                        <Label
+                            BackgroundColor="#80f1f5d7"
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Text="{Binding Deaths}"
+                            TextColor="Black"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            FontAttributes="Bold"
+                            FontSize="Subtitle" />
+                        <Label
+                            BackgroundColor="#80f1f5d7"
+                            Grid.Row="2"
+                            Grid.Column="2"
+                            Text="{Binding Recovered}"
+                            TextColor="Black"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            FontAttributes="Bold"
+                            FontSize="Subtitle" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <converter:IsStringEmptyConverter
+                x:Key="isStringEmpty" />
+            <converter:ProvinceConverter
+                x:Key="province" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid
+            BackgroundColor="White"
+            RowSpacing="0">
+            <ffimageloading:CachedImage
+                BackgroundColor="White"
+                Source="covid"
+                Aspect="AspectFit">
+            </ffimageloading:CachedImage>
+            <Label
+                Grid.Column="0"
+                Text="{Binding Title}"
+                TextColor="Black"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center"
+                FontAttributes="Bold"
+                FontSize="Subtitle" />
+            <ListView
+                RowHeight="92"
+                ItemTemplate="{StaticResource template2}"
+                CachingStrategy="RecycleElement"
+                ios:ListView.RowAnimationsEnabled="True"
+                ItemsSource="{Binding DataCovids}"
+                BackgroundColor="#80FFFFFF">
+                <!--<ListView.Header>
+                    <Grid
+                        ColumnSpacing="2"
+                        HeightRequest="44"
+                        BackgroundColor="#80FFFFFF">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="*" />
+                            <ColumnDefinition
+                                Width="*" />
+                            <ColumnDefinition
+                                Width="*" />
+                            <ColumnDefinition
+                                Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            BackgroundColor="#804086f7"
+                            Grid.Column="0"
+                            Text="Quốc Gia"
+                            TextColor="Black"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            FontAttributes="Bold"
+                            FontSize="Subtitle" />
+                        <Label
+                            BackgroundColor="#804086f7"
+                            Grid.Column="1"
+                            Text="Tổng Số Ca"
+                            TextColor="Black"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            FontAttributes="Bold"
+                            FontSize="Subtitle" />
+                        <Label
+                            BackgroundColor="#804086f7"
+                            Grid.Column="2"
+                            Text="Chết"
+                            TextColor="Black"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            FontAttributes="Bold"
+                            FontSize="Subtitle" />
+                        <Label
+                            BackgroundColor="#804086f7"
+                            Grid.Column="3"
+                            Text="Hồi Phục"
+                            TextColor="Black"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            FontAttributes="Bold"
+                            FontSize="Subtitle" />
+                    </Grid>
+                </ListView.Header>-->
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</page:PageBase>
+
+
