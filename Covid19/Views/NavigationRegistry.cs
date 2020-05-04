@@ -22,7 +22,7 @@ namespace Covid19.Views
             containerRegistry.RegisterForNavigation<CalendarPage, CalendarPageViewModel>(nameof(CalendarPage));
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>(nameof(HomePage));
             containerRegistry.RegisterForNavigation<MenuPage, MenuPageViewModel>(nameof(MenuPage));
-            containerRegistry.RegisterForNavigation<SearchCountryPage, SearchCountryPageViewModel>(nameof(SearchCountryPage));
+            containerRegistry.RegisterForNavigation<SelectCountryPage, SelectCountryPageViewModel>(nameof(SelectCountryPage));
         }
     }
 }

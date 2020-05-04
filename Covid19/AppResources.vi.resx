@@ -709,7 +709,7 @@
     <data
         name     ="MessageLoader"
         xml:space="preserve">
-    <value>Wait...</value>
+    <value>Vui lòng đợi...</value>
   </data>
     <data
         name     ="Mexico"

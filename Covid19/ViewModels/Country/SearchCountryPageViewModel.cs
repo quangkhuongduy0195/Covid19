@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Covid19.Services.Interfaces.Home;
@@ -8,6 +9,8 @@ namespace Covid19.ViewModels.Country
 {
     public class SearchCountryPageViewModel : ViewModelBase
     {
+
+
         readonly IRestService _restService;
         public SearchCountryPageViewModel(INavigationService navigationService, IRestService restService) : base(navigationService)
         {
@@ -23,9 +26,8 @@ namespace Covid19.ViewModels.Country
         {
             base.OnNavigatedTo(parameters);
             var modeNav = parameters.GetNavigationMode();
-            if(modeNav != NavigationMode.Back)
+            if (modeNav != NavigationMode.Back)
             {
-
                 await GetAllCountries();
             }
         }
@@ -33,7 +35,17 @@ namespace Covid19.ViewModels.Country
         async Task GetAllCountries()
         {
             var reponse = await _restService.GetAllCountries();
-            Countries = new ObservableCollection<Models.Country>(reponse);
+            if (reponse != null)
+            {
+                var aa = new List<Models.Country>(reponse);
+                var list = new List<Models.Country>();
+                for(int i = 1; i< 20; i++)
+                {
+                    list.Add(aa[i]);
+                }
+                Countries = new ObservableCollection<Models.Country>(list);
+            }
+                
         }
     }
 }

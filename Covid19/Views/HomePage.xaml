@@ -204,7 +204,7 @@
                                 HeightRequest="24"
                                 WidthRequest="36"
                                 Aspect="AspectFill"
-                                Source="https://corona.lmao.ninja/assets/img/flags/vn.png" />
+                                Source="{Binding FlagCountry}" />
                         </Frame>
                         <Label
                             VerticalTextAlignment="End"

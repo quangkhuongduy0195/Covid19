@@ -30,6 +30,14 @@ namespace Covid19.ViewModels.Home
             set { SetProperty(ref _busyCoutry, value); }
         }
 
+
+        public string _flagCountry = "https://corona.lmao.ninja/assets/img/flags/vn.png";
+        public string FlagCountry
+        {
+            get { return _flagCountry; }
+            set { SetProperty(ref _flagCountry, value); }
+        }
+
         public string _globalConfirmed = "-";
         public string GlobalConfirmed
         {
@@ -160,7 +168,7 @@ namespace Covid19.ViewModels.Home
         DelegateCommand _selectCountryCommand;
         public DelegateCommand SelectCountryCommand => _selectCountryCommand ?? (_selectCountryCommand = new DelegateCommand(async () =>
         {
-            await _navigationService.NavigateAsync($"{nameof(SearchCountryPage)}");
+            await _navigationService.NavigateAsync($"{nameof(SelectCountryPage)}");
         }));
 
         DelegateCommand _menuCommand;
@@ -200,12 +208,21 @@ namespace Covid19.ViewModels.Home
             base.OnNavigatedTo(parameters);
             var navigationMode = parameters.GetNavigationMode();
             if (navigationMode != NavigationMode.Back)
-            {           
+            {
                 BusyCoutry = true;
                 BusyGlobal = true;
                 await GetDataGlobal();
                 await GetDataCountry(_countryISO);
                 ChangeLanguage();
+            }
+            else if (navigationMode == NavigationMode.Back)
+            {
+                if (parameters.ContainsKey("country"))
+                {
+                    var country = parameters.GetValue<Models.Country>("country");
+                    _countryISO = country.countryInfo.iso2;
+                    await GetDataCountry(_countryISO);
+                }
             }
         }
 
@@ -230,6 +247,8 @@ namespace Covid19.ViewModels.Home
             var reponse = await _restService.GetTotalsByCountry(countryISO);
             SetTotalCountry(reponse);
             _country = reponse;
+            TitleCountry = TranslateExtension.TranslateText(_country?.country ?? null);
+            FlagCountry = _country?.countryInfo?.flag ?? null;
             BusyCoutry = false;
         }
 

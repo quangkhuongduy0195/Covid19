@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace Covid19.Views
 {
-    public partial class SearchCountryPage : PopupPage
+    public partial class SelectCountryPage : PopupPage
     {
-        public SearchCountryPage()
+        public SelectCountryPage()
         {
             InitializeComponent();
         }
