@@ -16,7 +16,7 @@
     <PackageReference Include="Prism.Unity.Forms" Version="7.2.0.1422" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="1.3.7" />
-    <PackageReference Include="refit" Version="5.0.23" />
+    <PackageReference Include="refit" Version="8.0.0" />
     <PackageReference Include="modernhttpclient-updated" Version="3.4.3" />
     <PackageReference Include="Xamarin.Plugin.Calendar" Version="1.1.1002" />
     <PackageReference Include="Flurl" Version="2.8.2" />
